@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "MyMVCapp\\bin\\Release\\net7.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/db404777-2579-48f6-9d53-b22df9acaf46/resourceGroups/WebService/providers/Microsoft.Web/sites/appservice12341234"
+}
