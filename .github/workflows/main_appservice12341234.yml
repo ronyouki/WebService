@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: 
+        tags: webserviceacr12341234.azurecr.io/WebServiceACR12341234/WebService:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
