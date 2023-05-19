@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://webserviceacr12341234.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_23c8487e67fc4e5380a17d7f1a6ed94f }}
+        registry: https://webservicecontainer.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_3abe9981cc5943afac7172ae8bab19e8 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_97cbdbeb1845453695222910ada02566 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}/webservice:latest
+        tags: webservicecontainer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3abe9981cc5943afac7172ae8bab19e8 }}/webservice:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'appservice12341234'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_dd449a25806d460bbb81746e71d00cac }}
-        images: 'webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}/webservice:latest'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ebe9789acad04ac3a8460420b860e794 }}
+        images: 'webservicecontainer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3abe9981cc5943afac7172ae8bab19e8 }}/webservice:${{ github.sha }}'
