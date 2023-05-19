@@ -6,10 +6,10 @@ ENV ASPNETCORE_URLS=http://+:5110
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["MyMVCapp/MyMVCapp.csproj", "MyMVCapp/"]
-RUN dotnet restore "MyMVCapp\MyMVCapp.csproj"
+COPY ["/MyMVCapp.csproj", "."]
+RUN dotnet restore "MyMVCapp.csproj"
 COPY . .
-WORKDIR "/src/MyMVCapp"
+WORKDIR "/src/"
 RUN dotnet build "MyMVCapp.csproj" -c Release -o /app/build
 
 FROM build AS publish
