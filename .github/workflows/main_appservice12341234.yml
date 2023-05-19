@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}/webservice:${{ github.sha }}
+        tags: webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'appservice12341234'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_dd449a25806d460bbb81746e71d00cac }}
-        images: 'webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}/webservice:${{ github.sha }}'
+        images: 'webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}:${{ github.sha }}'
