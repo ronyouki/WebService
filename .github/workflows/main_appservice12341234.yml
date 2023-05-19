@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: webserviceacr12341234.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_232f0629c4f543099c2508f935f21293 }}:${{ github.sha }}
+        tags: webserviceacr12341234.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_232F0629C4F543099C2508F935F21293 }}:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
