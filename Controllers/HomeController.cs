@@ -4,7 +4,6 @@ using MyMVCapp.Models;
 
 namespace MyMVCapp.Controllers;
 
-
 /*
 public class ControllerParam{
     public static Message controllerMessage;
@@ -16,7 +15,6 @@ public class ControllerParam{
 }
 
 */
-
 
 public class HomeController : Controller
 {
@@ -32,8 +30,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        OpenAIApp.Program.OpenAIMain(null).GetAwaiter().GetResult();
         ConsoleApplication1.ProgramWeather.Run(null);
-        return View(new MessageViewModel{Message=ConsoleApplication1.ProgramWeather.GetResult()});
+        return View(new MessageViewModel{
+            Weather=ConsoleApplication1.ProgramWeather.GetResult(),
+            OpenAIAnswer=OpenAIApp.Program.GetResult()
+        });
     }
 
     public IActionResult Weather()

@@ -2,5 +2,6 @@ namespace MyMVCapp.Models;
 
 public class MessageViewModel
 {
-    public string? Message { get; set; }
+    public string? Weather { get; set; }
+    public string? OpenAIAnswer { get; set; }
 }
