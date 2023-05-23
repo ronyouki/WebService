@@ -1,20 +1,9 @@
-using Azure.Security.KeyVault.Secrets;
-using Azure.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-//WeatherTest.WeatherClass weather = new WeatherTest.WeatherClass();
-//weather.RunWeather();
-//
-
-//ControllerParam.SetControllerMessage(new Message() { message = "理科" });
-        OpenAIApp.Program.OpenAIMain(null).GetAwaiter().GetResult();
-        Console.WriteLine(OpenAIApp.Program.GetResult());
-            
-        
 
 var app = builder.Build();
 

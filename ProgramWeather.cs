@@ -28,6 +28,8 @@ namespace ConsoleApplication1
     {
         const string NO_VALUE = "---";
 
+
+
         static HttpClient client = new HttpClient();
         static string baseURL = "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&current_weather=true&timezone=Asia%2FTokyo";
 
@@ -49,19 +51,15 @@ namespace ConsoleApplication1
             if(weatherCode <= 99) return "雷雨";  // 95 : Thunderstorm Slight Or Moderate ・ 96, 99 : Thunderstorm With Slight And Heavy Hail
             return "不明";
         }
-        public static void Run(string[] args)
+        public static void Run(string args)
         {
             GetWeatherText().GetAwaiter().GetResult();
-            //Console.WriteLine(GetWeatherText());
-            //Console.ReadKey();
         }
         static WeatherForecast weather;
         static async Task<WeatherForecast> GetWeatherAsync(string path)
         {
             String response = await client.GetStringAsync(path);
             weather = JsonSerializer.Deserialize<WeatherForecast>(response);
-            Console.WriteLine(response);
-            Console.WriteLine(weather);
             return weather;
         }
 
@@ -78,13 +76,6 @@ namespace ConsoleApplication1
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
             WeatherForecast weatherForecast = await GetWeatherAsync(baseURL);
-
-            Console.WriteLine(weatherForecast?.current_weather.temperature);
-            Console.WriteLine(weatherForecast?.current_weather.windspeed);
-            Console.WriteLine(weatherForecast?.current_weather.winddirection);
-            Console.WriteLine(weatherCodeFunc((int)weatherForecast?.current_weather.weathercode));
-            Console.WriteLine(weatherForecast?.current_weather.is_day);
-            Console.WriteLine(weatherForecast?.current_weather.time);
 
             result = string.Format("東京の天気は{0}です。気温は{1}℃です。",
                     weatherCodeFunc((int)weatherForecast?.current_weather.weathercode),

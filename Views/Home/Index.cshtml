@@ -3,11 +3,45 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">質問になんでも答えてくれます</h1>
+    <h1 class="display-4">質問に答えてくれるサービス</h1>
+    <p> 天気の質問をしようとした方へ @Model.Weather </p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<div> 
+      @using (Html.BeginForm("Index","Home",null,FormMethod.Post,false,new { enctype = "multipart/form-data" })) {
+        @Html.TextBox("value1", "Where are you from?", new { maxlength = 40 })
+         <input type="submit" value="質問する" />
+      }
+</div>
+
 <ul>
-    <li>@Model.Weather</li>
-    <li>@Model.OpenAIAnswer</li>
+    <li>答え @Model.OpenAIAnswer</li>
+
+    <table border="1">
+
+    <thead border="1">
+        <tr>
+        <th>日付</th>
+        <th>質問</th>
+        <th>答え</th>
+        </tr>
+    </thead>
+
+    <tbody border="1">
+        @if (@Model.Items?.Count > 0){
+        @foreach(var f in @Model.Items)
+        {
+            <tr>
+            <td>@f.Date    </td>
+            <td>@f.Question    </td>
+            <td>@f.Answer    </td>
+            </tr>
+        }
+        }
+    </tbody>
+
+    </table>
+
+
 </ul>
